@@ -25,10 +25,10 @@ def _build_vgm_play(build_temp, build_lib):
     os.makedirs(build_temp)
     made_build_temp = True
 
-  # Download VGMPlay 0.40.8
+  # Download VGMPlay 0.40.9
   print('Downloading VGMPlay')
-  tgz_filepath = os.path.join(build_temp, '0.40.8.tar.gz')
-  url = 'https://github.com/vgmrips/vgmplay-legacy/archive/refs/tags/0.40.8.tar.gz'
+  tgz_filepath = os.path.join(build_temp, '0.40.9.tar.gz')
+  url = 'https://github.com/vgmrips/vgmplay-legacy/archive/refs/tags/0.40.9.tar.gz'
 
   with urlopen(url) as response, open(tgz_filepath, 'wb') as out_file:
       data = response.read()
@@ -38,7 +38,7 @@ def _build_vgm_play(build_temp, build_lib):
   print('Extracting VGMPlay')
   with tarfile.open(tgz_filepath, 'r:gz') as f:
     f.extractall(build_temp)
-  vgmplay_dir = os.path.join(build_temp, 'vgmplay-0.40.8', 'VGMPlay')
+  vgmplay_dir = os.path.join(build_temp, 'vgmplay-0.40.9', 'VGMPlay')
   if not os.path.isdir(vgmplay_dir):
     print('WARNING: Could not extract VGMPlay')
 
@@ -81,7 +81,7 @@ def _build_vgm_play(build_temp, build_lib):
     shutil.rmtree(build_temp)
   else:
     os.remove(tgz_filepath)
-    shutil.rmtree(os.path.join(build_temp, 'vgmplay-0.40.8'))
+    shutil.rmtree(os.path.join(build_temp, 'vgmplay-0.40.9'))
 
 
 class VGMPlayDevelop(develop):
