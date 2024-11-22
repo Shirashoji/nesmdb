@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import tarfile
 import sys
+from urllib.request import urlopen
 
 try:
   # python 2
@@ -27,9 +28,11 @@ def _build_vgm_play(build_temp, build_lib):
   # Download VGMPlay 0.40.8
   print('Downloading VGMPlay')
   tgz_filepath = os.path.join(build_temp, '0.40.8.tar.gz')
-  urlretrieve(
-      'https://github.com/vgmrips/vgmplay-legacy/archive/refs/tags/0.40.8.tar.gz',
-      tgz_filepath)
+  url = 'https://github.com/vgmrips/vgmplay-legacy/archive/refs/tags/0.40.8.tar.gz'
+
+  with urlopen(url) as response, open(tgz_filepath, 'wb') as out_file:
+      data = response.read()
+      out_file.write(data)
 
   # Extract
   print('Extracting VGMPlay')
